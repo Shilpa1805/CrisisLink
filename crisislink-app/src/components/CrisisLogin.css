@@ -1,0 +1,172 @@
+/* Layout */
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;1,300&display=swap');
+
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Left Panel with Image & Wave */
+.left-panel {
+  width: 60%;
+  position: relative;
+  overflow: visible;
+}
+
+.background-img {
+  position: absolute;
+  width: 178%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: -10%; /* Moves image 10% to the left */
+  z-index: 1;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 3%;
+  
+  width: 100%;
+  height: 85%;
+  z-index: 1;
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.logo-circle {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(181.47deg, #002C4F 25.8%, #002C4F 30.11%, rgba(0, 45, 79, 0.973994) 30.13%, rgba(0, 47, 81, 0.894634) 33.87%, rgba(0, 51, 83, 0.799515) 38.35%, rgba(0, 51, 83, 0.777705) 38.37%, rgba(0, 77, 97, 0) 71.2%);
+  border-radius: 50%;
+  margin-bottom: -120px;
+  
+
+}
+
+
+.logo-text {
+ font-family: 'Red Hat Display';
+font-style: italic;
+font-weight: 300;
+font-size: 96px;
+line-height: 48px;
+/* or 51% */
+text-align: center;
+letter-spacing: -0.04em;
+
+color: #004D61;
+
+text-shadow: 0px 4px 4px rgba(0, 77, 97, 0.25);
+}
+
+
+
+
+.form-container {
+  position: absolute;
+  top: 0;
+  right: -33rem;           /* Pushes it away from the right edge */
+  width: 400px;          /* Fixed width */
+  height: 80%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;  /* Or center depending on your design */
+  padding: 2rem;
+  /*background: rgba(0, 44, 79, 0.5); /* Optional: semi-transparent bg for readability */
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+label {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 30px; /* space for eye icon */
+}
+
+.toggle-visibility {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Options Row */
+.options {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem; /* Increase this value as needed */
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+
+/* Buttons */
+.signin-button {
+  background-color: #1e133c;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.or-divider {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid white;
+  background: transparent;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.google-button img {
+  width: 20px;
+  height: 20px;
+}
