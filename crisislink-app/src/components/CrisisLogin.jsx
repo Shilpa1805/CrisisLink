@@ -42,10 +42,12 @@ const CrisisLogin = () => {
               <label>
                 <input type="checkbox" /> Remember me
               </label>
+              <p>Do not have an account?<a href="#">Sign in</a></p>
+              
               <a href="#">Forgot Password</a>
             </div>
 
-            <button type="submit" className="signin-button">Sign in</button>
+            <button type="submit" className="signin-button">Log in</button>
             <div className="or-divider">Or</div>
 
             <button className="google-button">
