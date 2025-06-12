@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./CrisisSignin.css";
+import { render } from "react-dom";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import kerLogo from "../assets/bg.png";
 
@@ -27,7 +29,9 @@ const CrisisSignin = () => {
         <img src={kerLogo} alt="Background" className="background-img" />
         <div className="overlay">
           <div className="logo-circle"></div>
+          <motion.div whileHover={{y:-3}}>
           <h1 className="logo-text">CrisisLink</h1>
+          </motion.div>
         </div>
 
         <div className="form-container">
@@ -35,13 +39,16 @@ const CrisisSignin = () => {
 
           <form onSubmit={handleSubmit}>
             <label htmlFor="name" >Name</label>
-            <input id="name" type="text" placeholder="Enter full name" required/>
+             <motion.div whileHover={{scale:1.09}}>
+            <input id="name" type="text" placeholder="Enter full name" required/></motion.div>
             <label htmlFor="email">Email</label>
+             <motion.div whileHover={{scale:1.09}}>
             <input id="email" type="email" placeholder="Enter your email" required />
-
+           </motion.div>
             <label htmlFor="password">Password</label>
             <div className="password-wrapper">
-              <input
+                <motion.div whileHover={{scale:1.09}}>
+                    <input
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
@@ -55,10 +62,13 @@ const CrisisSignin = () => {
               >
                 {showPassword ? "🙈" : "👁️"}
               </span>
+                </motion.div>
+              
             </div>
 
             <label htmlFor="confirm-password">Confirm Password</label>
             <div className="password-wrapper">
+                <motion.div whileHover={{scale:1.09}}>
               <input
                 id="confirm-password"
                 type={showPassword ? "text" : "password"}
@@ -73,6 +83,7 @@ const CrisisSignin = () => {
               >
                 {showPassword ? "🙈" : "👁️"}
               </span>
+              </motion.div>
             </div>
 
             {/* Error message */}
@@ -84,10 +95,10 @@ const CrisisSignin = () => {
               </label>
               <p>Already have an account? <Link to="/">Log in</Link></p>
             </div>
-
+           
             <button type="submit" className="signin-button">Sign Up</button>
             <div className="or-divider">Or</div>
-
+             
             <button className="google-button">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"

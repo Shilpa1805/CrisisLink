@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { render } from "react-dom";
+import { motion } from "framer-motion";
 import "./CrisisLogin.css";
 import { Link } from "react-router-dom";
 import kerLogo from "../assets/bg.png";
@@ -13,7 +15,10 @@ const CrisisLogin = () => {
         <img src={kerLogo} alt="Background" className="background-img" />
         <div className="overlay">
           <div className="logo-circle"></div>
+           <motion.div whileHover={{y: -3}}>
+          
           <h1 className="logo-text">CrisisLink</h1>
+          </motion.div>
           </div>
            <div className="form-container">
           <h2>
@@ -22,10 +27,12 @@ const CrisisLogin = () => {
 
           <form onSubmit={(e) => e.preventDefault()}>
             <label htmlFor="email">Email</label>
+            <motion.div whileHover={{scale:1.09}}>
             <input id="email" type="email" placeholder="Enter your email" />
-
+</motion.div>
             <label htmlFor="password">Password</label>
             <div className="password-wrapper">
+              <motion.div whileHover={{scale:1.09}}>
               <input
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -37,6 +44,7 @@ const CrisisLogin = () => {
               >
                 {showPassword ? "🙈" : "👁️"}
               </span>
+              </motion.div>
             </div>
 
             <div className="options">
