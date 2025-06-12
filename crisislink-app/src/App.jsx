@@ -1,11 +1,16 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CrisisSignin from './components/CrisisSignin';
 import CrisisLogin from './components/CrisisLogin';
 
 function App() {
   return (
-    <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
-      <CrisisLogin />
-    </div>
+     <Router>
+      <Routes>
+        <Route path="/" element={<CrisisLogin />} />
+        <Route path="/signin" element={<CrisisSignin />} /> 
+      </Routes>
+    </Router>
   );
 }
 

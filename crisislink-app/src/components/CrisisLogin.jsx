@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CrisisLogin.css";
+import { Link } from "react-router-dom";
 import kerLogo from "../assets/bg.png";
 
 const CrisisLogin = () => {
@@ -42,7 +43,7 @@ const CrisisLogin = () => {
               <label>
                 <input type="checkbox" /> Remember me
               </label>
-              <p>Do not have an account?<a href="#">Sign in</a></p>
+              <p>Do not have an account? <Link to= "/signin">Sign up</Link></p>
               
               <a href="#">Forgot Password</a>
             </div>
