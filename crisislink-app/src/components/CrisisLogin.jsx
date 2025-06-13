@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "./CrisisLogin.css";
 import { Link } from "react-router-dom";
-import kerLogo from "../assets/bg.png";
+import kerLogo from "../assets/bg2.png";
 
 const CrisisLogin = () => {
   const [showPassword, setShowPassword] = useState(false);

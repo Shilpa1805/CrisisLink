@@ -43,11 +43,11 @@
 
 
 .logo-circle {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   background: linear-gradient(181.47deg, #002C4F 25.8%, #002C4F 30.11%, rgba(0, 45, 79, 0.973994) 30.13%, rgba(0, 47, 81, 0.894634) 33.87%, rgba(0, 51, 83, 0.799515) 38.35%, rgba(0, 51, 83, 0.777705) 38.37%, rgba(0, 77, 97, 0) 71.2%);
   border-radius: 50%;
-  margin-bottom: -120px;
+  margin-bottom: -110px;
   
 
 }
@@ -63,7 +63,7 @@ line-height: 48px;
 text-align: center;
 letter-spacing: -0.04em;
 
-color: #004D61;
+color: white;
 
 text-shadow: 0px 4px 4px rgba(0, 77, 97, 0.25);
 }
