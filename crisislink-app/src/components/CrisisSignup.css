@@ -92,18 +92,3 @@
   background: #684198;
 }
 
-.btn-google {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #bfcbe6;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 1.1rem;
-  padding: 10px 0;
-  transition: background 0.2s, color 0.2s;
-}
-
-.btn-google:hover {
-  background: #fff;
-  color: #2a1836;
-}
