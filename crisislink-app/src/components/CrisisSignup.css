@@ -78,4 +78,10 @@
   text-decoration: underline;
 }
 
+.input-light::placeholder,
+.form-control::placeholder,
+.form-select::placeholder {
+  color: #fff !important;
+  opacity: 1 !important;
+}
 

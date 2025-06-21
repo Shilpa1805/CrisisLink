@@ -87,22 +87,34 @@ const CrisisSignup = () => {
             </div>
 
             <div className="row">
-              <div className="col-md-7">
-                <label className="form-label label-light">Gender</label>
-                <div className="d-flex gap-4 align-items-center">
-                  <div className="form-check">
-                    <input type="radio" className="form-check-input" name="gender" id="genderMale" value="Male" required />
-                    <label className="form-check-label" htmlFor="genderMale">Male</label>
-                  </div>
-                  <div className="form-check">
-                    <input type="radio" className="form-check-input" name="gender" id="genderFemale" value="Female" required />
-                    <label className="form-check-label" htmlFor="genderFemale">Female</label>
-                  </div>
-                  <div className="form-check">
-                    <input type="radio" className="form-check-input" name="gender" id="genderOther" value="Other" required />
-                    <label className="form-check-label" htmlFor="genderOther">Other</label>
-                  </div>
+              <label className="form-label label-light">Gender</label>
+              <div className="d-flex gap-4 align-items-center">
+                <div className="form-check">
+                  <input type="radio" className="form-check-input" name="gender" id="genderMale" value="Male" required />
+                  <label className="form-check-label label-light" htmlFor="genderMale">Male</label>
                 </div>
+                <div className="form-check">
+                  <input type="radio" className="form-check-input" name="gender" id="genderFemale" value="Female" required />
+                  <label className="form-check-label label-light" htmlFor="genderFemale">Female</label>
+                </div>
+                <div className="form-check">
+                  <input type="radio" className="form-check-input" name="gender" id="genderOther" value="Other" required />
+                  <label className="form-check-label label-light" htmlFor="genderOther">Other</label>
+                </div>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-md-7">
+                <label className="form-label label-light" htmlFor="phone">Phone</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  className="form-control input-light"
+                  placeholder="Enter 10-digit number"
+                  pattern="[0-9]{10}"
+                  required
+                />
               </div>
 
               <div className="col-md-5">
@@ -118,18 +130,6 @@ const CrisisSignup = () => {
               </div>
             </div>
 
-            <div className="mb-3">
-              <label className="form-label label-light" htmlFor="phone">Phone</label>
-              <input
-                type="tel"
-                id="phone"
-                className="form-control input-light"
-                placeholder="Enter 10-digit number"
-                pattern="[0-9]{10}"
-                required
-              />
-            </div>
-
 
 
             <div className="row">
@@ -137,7 +137,7 @@ const CrisisSignup = () => {
                 <label className="form-label label-light" htmlFor="state">State</label>
                 <select
                   id="state"
-                  className="form-select input-light"
+                  className="form-select"
                   required
                   onChange={handleStateChange}
                 >
@@ -152,7 +152,7 @@ const CrisisSignup = () => {
                 <label className="form-label label-light" htmlFor="district">District</label>
                 <select
                   id="district"
-                  className="form-select input-light"
+                  className="form-select"
                   required
                   value={selectedDistrict}
                   onChange={handleDistrictChange}
@@ -168,7 +168,7 @@ const CrisisSignup = () => {
                 <label className="form-label label-light" htmlFor="city">City</label>
                 <select
                   id="city"
-                  className="form-select input-light"
+                  className="form-select"
                   required
                   value={selectedCity}
                   onChange={(e) => setSelectedCity(e.target.value)}
