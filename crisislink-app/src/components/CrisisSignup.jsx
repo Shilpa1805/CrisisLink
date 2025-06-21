@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CrisisSignup.css";
+import eye from "../assets/eye.png";
+import eyeCrossed from "../assets/eye-crossed.png";
 
 const CrisisSignup = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [states, setStates] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [cities, setCities] = useState([]);
@@ -33,7 +36,6 @@ const CrisisSignup = () => {
     const district = e.target.value;
     setSelectedDistrict(district);
     setSelectedCity("");
-
     try {
       const res = await fetch("/data/cities.json");
       const data = await res.json();
@@ -49,7 +51,6 @@ const CrisisSignup = () => {
     // Submit logic here
   };
 
-  // Get today's date for dob max
   const maxDOB = new Date().toISOString().split("T")[0];
 
   return (
@@ -116,7 +117,6 @@ const CrisisSignup = () => {
                   required
                 />
               </div>
-
               <div className="col-md-5">
                 <label className="form-label label-light" htmlFor="dob">Date of Birth</label>
                 <input
@@ -129,8 +129,6 @@ const CrisisSignup = () => {
                 />
               </div>
             </div>
-
-
 
             <div className="row">
               <div className="mb-3 col-md-4">
@@ -193,23 +191,33 @@ const CrisisSignup = () => {
                 required
               />
               <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? "🙈" : "👁️"}
+                <img className="eye"
+                  src={showPassword ? eyeCrossed : eye}
+                  alt="Toggle Password"
+                  width="20"
+                />
               </span>
             </div>
+
 
             <div className="mb-3 position-relative">
               <label className="form-label label-light" htmlFor="confirmPassword">Confirm Password</label>
               <input
-                type={showPassword ? "text" : "password"}
+                type={showConfirmPassword ? "text" : "password"}
                 id="confirmPassword"
                 className="form-control input-light"
                 placeholder="Confirm your password"
                 required
               />
-              <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? "🙈" : "👁️"}
+              <span className="toggle-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                <img className="eye"
+                  src={showConfirmPassword ? eyeCrossed : eye}
+                  alt="Toggle Confirm Password"
+                  width="20"
+                />
               </span>
             </div>
+
 
             <div className="mb-3 form-check">
               <input type="checkbox" className="form-check-input" id="terms" required />
@@ -222,7 +230,6 @@ const CrisisSignup = () => {
               <span className="label-light">Already have an account? </span>
               <Link to="/login" className="text-link">Log in</Link>
             </div>
-
 
             <button type="submit" className="btn btn-primary w-100">Sign Up</button>
           </form>

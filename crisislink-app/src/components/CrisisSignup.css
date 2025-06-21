@@ -85,3 +85,20 @@
   opacity: 1 !important;
 }
 
+.toggle-password {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  color: #fff;
+  top: 55%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.eye{
+  height: 1rem;
+  width: 1rem;
+}
+
+
