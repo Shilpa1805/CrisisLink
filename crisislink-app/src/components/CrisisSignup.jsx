@@ -64,17 +64,17 @@ const CrisisSignup = () => {
           <h2 className="welcome-title d-flex justify-content-center align-items-center">Welcome</h2>
           <form onSubmit={handleSubmit}>
             <div className="row">
-              <div className="mb-3 col-md-6">
+              <div className="col-md-6">
                 <label className="form-label label-light" htmlFor="fname">First Name</label>
                 <input type="text" id="fname" className="form-control input-light" placeholder="Enter your first name" required />
               </div>
-              <div className="mb-3 col-md-6">
+              <div className="col-md-6">
                 <label className="form-label label-light" htmlFor="lname">Last Name</label>
                 <input type="text" id="lname" className="form-control input-light" placeholder="Enter your last name" required />
               </div>
             </div>
 
-            <div className="mb-3">
+            <div>
               <label className="form-label label-light" htmlFor="email">Email</label>
               <input
                 type="email"
@@ -87,99 +87,98 @@ const CrisisSignup = () => {
               />
             </div>
 
-            <div className="row">
-              <label className="form-label label-light">Gender</label>
-              <div className="d-flex gap-4 align-items-center">
-                <div className="form-check">
-                  <input type="radio" className="form-check-input" name="gender" id="genderMale" value="Male" required />
-                  <label className="form-check-label label-light" htmlFor="genderMale">Male</label>
+              <div className="row space">
+                <label className="form-label label-light">Gender</label>
+                <div className="d-flex gap-4 align-items-center">
+                  <div className="form-check">
+                    <input type="radio" className="form-check-input" name="gender" id="genderMale" value="Male" required />
+                    <label className="form-check-label label-light" htmlFor="genderMale">Male</label>
+                  </div>
+                  <div className="form-check">
+                    <input type="radio" className="form-check-input" name="gender" id="genderFemale" value="Female" required />
+                    <label className="form-check-label label-light" htmlFor="genderFemale">Female</label>
+                  </div>
+                  <div className="form-check">
+                    <input type="radio" className="form-check-input" name="gender" id="genderOther" value="Other" required />
+                    <label className="form-check-label label-light" htmlFor="genderOther">Other</label>
+                  </div>
                 </div>
-                <div className="form-check">
-                  <input type="radio" className="form-check-input" name="gender" id="genderFemale" value="Female" required />
-                  <label className="form-check-label label-light" htmlFor="genderFemale">Female</label>
+              </div>
+  
+              <div className="row space">
+                <div className=" col-md-7">
+                  <label className="form-label label-light" htmlFor="phone">Phone</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    className="form-control input-light"
+                    placeholder="Enter 10-digit number"
+                    pattern="[0-9]{10}"
+                    required
+                  />
                 </div>
-                <div className="form-check">
-                  <input type="radio" className="form-check-input" name="gender" id="genderOther" value="Other" required />
-                  <label className="form-check-label label-light" htmlFor="genderOther">Other</label>
+                <div className="col-md-5">
+                  <label className="form-label label-light" htmlFor="dob">Date of Birth</label>
+                  <input
+                    type="date"
+                    id="dob"
+                    max={maxDOB}
+                    className="form-control input-light"
+                    required
+                  />
                 </div>
               </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-7">
-                <label className="form-label label-light" htmlFor="phone">Phone</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  className="form-control input-light"
-                  placeholder="Enter 10-digit number"
-                  pattern="[0-9]{10}"
-                  required
-                />
-              </div>
-              <div className="col-md-5">
-                <label className="form-label label-light" htmlFor="dob">Date of Birth</label>
-                <input
-                  type="date"
-                  id="dob"
-                  max={maxDOB}
-                  className="form-control input-light"
-                  placeholder="Select DOB"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="mb-3 col-md-4">
-                <label className="form-label label-light" htmlFor="state">State</label>
-                <select
-                  id="state"
-                  className="form-select"
-                  required
-                  onChange={handleStateChange}
-                >
-                  <option value="">Select State</option>
-                  {states.map((state) => (
-                    <option key={state} value={state}>{state}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="mb-3 col-md-4">
-                <label className="form-label label-light" htmlFor="district">District</label>
-                <select
-                  id="district"
-                  className="form-select"
-                  required
-                  value={selectedDistrict}
-                  onChange={handleDistrictChange}
-                >
-                  <option value="">Select District</option>
-                  {districts.map((dist) => (
-                    <option key={dist} value={dist}>{dist}</option>
-                  ))}
-                </select>
+  
+              <div className="row space">
+                <div className=" col-md-4">
+                  <label className="form-label label-light" htmlFor="state">State</label>
+                  <select
+                    id="state"
+                    className="form-select input-light"
+                    required
+                    onChange={handleStateChange}
+                  >
+                    <option value="">Select State</option>
+                    {states.map((state) => (
+                      <option key={state} value={state}>{state}</option>
+                    ))}
+                  </select>
+                </div>
+  
+                <div className="col-md-4">
+                  <label className="form-label label-light" htmlFor="district">District</label>
+                  <select
+                    id="district"
+                    className="form-select input-light"
+                    required
+                    value={selectedDistrict}
+                    onChange={handleDistrictChange}
+                  >
+                    <option value="">Select District</option>
+                    {districts.map((dist) => (
+                      <option key={dist} value={dist}>{dist}</option>
+                    ))}
+                  </select>
+                </div>
+  
+                <div className="col-md-4">
+                  <label className="form-label label-light" htmlFor="city">City</label>
+                  <select
+                    id="city"
+                    className="form-select input-light"
+                    required
+                    value={selectedCity}
+                    onChange={(e) => setSelectedCity(e.target.value)}
+                  >
+                    <option value="">Select City</option>
+                    {cities.map((city) => (
+                      <option key={city} value={city}>{city}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
-              <div className="mb-3 col-md-4">
-                <label className="form-label label-light" htmlFor="city">City</label>
-                <select
-                  id="city"
-                  className="form-select"
-                  required
-                  value={selectedCity}
-                  onChange={(e) => setSelectedCity(e.target.value)}
-                >
-                  <option value="">Select City</option>
-                  {cities.map((city) => (
-                    <option key={city} value={city}>{city}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="mb-3 position-relative">
+            <div className="position-relative">
               <label className="form-label label-light" htmlFor="password">Password</label>
               <input
                 type={showPassword ? "text" : "password"}
@@ -191,16 +190,11 @@ const CrisisSignup = () => {
                 required
               />
               <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
-                <img className="eye"
-                  src={showPassword ? eyeCrossed : eye}
-                  alt="Toggle Password"
-                  width="20"
-                />
+                <img className="eye" src={showPassword ? eyeCrossed : eye} alt="Toggle Password" />
               </span>
             </div>
 
-
-            <div className="mb-3 position-relative">
+            <div className="position-relative">
               <label className="form-label label-light" htmlFor="confirmPassword">Confirm Password</label>
               <input
                 type={showConfirmPassword ? "text" : "password"}
@@ -210,28 +204,23 @@ const CrisisSignup = () => {
                 required
               />
               <span className="toggle-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                <img className="eye"
-                  src={showConfirmPassword ? eyeCrossed : eye}
-                  alt="Toggle Confirm Password"
-                  width="20"
-                />
+                <img className="eye" src={showConfirmPassword ? eyeCrossed : eye} alt="Toggle Confirm Password" />
               </span>
             </div>
 
-
-            <div className="mb-3 form-check">
+            <div className="form-check space">
               <input type="checkbox" className="form-check-input" id="terms" required />
               <label className="form-check-label label-light" htmlFor="terms">
                 I agree to the <a href="#" className="text-link">Terms and Conditions</a>
               </label>
             </div>
 
-            <div className="mb-3 text-center">
+            <button type="submit" className="btn btn-primary w-100">Sign Up</button>
+            
+            <div className="text-center m-2">
               <span className="label-light">Already have an account? </span>
               <Link to="/login" className="text-link">Log in</Link>
             </div>
-
-            <button type="submit" className="btn btn-primary w-100">Sign Up</button>
           </form>
         </div>
       </div>
