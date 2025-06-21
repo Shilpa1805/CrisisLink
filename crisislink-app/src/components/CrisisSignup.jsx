@@ -14,7 +14,6 @@ const CrisisSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Load states on mount
   useEffect(() => {
     fetch("/data/states.json")
       .then((res) => res.json())
@@ -27,7 +26,7 @@ const CrisisSignup = () => {
     const res = await fetch("/data/districts.json");
     const data = await res.json();
     setDistricts(data[state] || []);
-    setCities([]); // reset cities
+    setCities([]);
   };
 
   const handleDistrictChange = async (e) => {
@@ -38,7 +37,6 @@ const CrisisSignup = () => {
     try {
       const res = await fetch("/data/cities.json");
       const data = await res.json();
-
       setCities(data[selectedState]?.[district] || []);
     } catch (err) {
       console.error("Error loading cities:", err);
@@ -46,21 +44,20 @@ const CrisisSignup = () => {
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your submit logic here
+    // Submit logic here
   };
+
+  // Get today's date for dob max
+  const maxDOB = new Date().toISOString().split("T")[0];
 
   return (
     <div className="signup-bg">
       <div className="signup-left">
-        <h1 className="crisis-logo">
-          CrisisLink
-        </h1>
+        <h1 className="crisis-logo">CrisisLink</h1>
       </div>
 
-      {/* Right side form */}
       <div className="signup-form-container">
         <div className="form-box">
           <h2 className="welcome-title d-flex justify-content-center align-items-center">Welcome</h2>
@@ -68,12 +65,11 @@ const CrisisSignup = () => {
             <div className="row">
               <div className="mb-3 col-md-6">
                 <label className="form-label label-light" htmlFor="fname">First Name</label>
-                <input type="text" id="fname" className="form-control input-light" required />
+                <input type="text" id="fname" className="form-control input-light" placeholder="Enter your first name" required />
               </div>
-
               <div className="mb-3 col-md-6">
                 <label className="form-label label-light" htmlFor="lname">Last Name</label>
-                <input type="text" id="lname" className="form-control input-light" required />
+                <input type="text" id="lname" className="form-control input-light" placeholder="Enter your last name" required />
               </div>
             </div>
 
@@ -83,6 +79,7 @@ const CrisisSignup = () => {
                 type="email"
                 id="email"
                 className="form-control input-light"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -91,32 +88,56 @@ const CrisisSignup = () => {
 
             <div className="row">
               <div className="mb-3 col-md-4">
-                <label className="form-label label-light" htmlFor="gender">Gender</label>
-                <select id="gender" className="form-select input-light" required>
-                  <option value="">Select</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
+                <label className="form-label label-light">Gender</label>
+                <div>
+                  <label className="me-3">
+                    <input type="radio" name="gender" value="Male" required /> Male
+                  </label>
+                  <label className="me-3">
+                    <input type="radio" name="gender" value="Female" required /> Female
+                  </label>
+                  <label>
+                    <input type="radio" name="gender" value="Other" required /> Other
+                  </label>
+                </div>
               </div>
 
               <div className="mb-3 col-md-4">
                 <label className="form-label label-light" htmlFor="dob">Date of Birth</label>
-                <input type="date" id="dob" className="form-control input-light" required />
+                <input
+                  type="date"
+                  id="dob"
+                  max={maxDOB}
+                  className="form-control input-light"
+                  placeholder="Select DOB"
+                  required
+                />
               </div>
 
               <div className="mb-3 col-md-4">
                 <label className="form-label label-light" htmlFor="phone">Phone</label>
-                <input type="tel" id="phone" className="form-control input-light" pattern="[0-9]{10}" required />
+                <input
+                  type="tel"
+                  id="phone"
+                  className="form-control input-light"
+                  placeholder="Enter 10-digit number"
+                  pattern="[0-9]{10}"
+                  required
+                />
               </div>
             </div>
 
             <div className="row">
               <div className="mb-3 col-md-4">
                 <label className="form-label label-light" htmlFor="state">State</label>
-                <select id="state" className="form-select input-light" required onChange={handleStateChange}>
+                <select
+                  id="state"
+                  className="form-select input-light"
+                  required
+                  onChange={handleStateChange}
+                >
                   <option value="">Select State</option>
-                  {states.map(state => (
+                  {states.map((state) => (
                     <option key={state} value={state}>{state}</option>
                   ))}
                 </select>
@@ -124,9 +145,15 @@ const CrisisSignup = () => {
 
               <div className="mb-3 col-md-4">
                 <label className="form-label label-light" htmlFor="district">District</label>
-                <select id="district" className="form-select input-light" required onChange={handleDistrictChange}>
-                  <option value={selectedDistrict}>Select District</option>
-                  {districts.map(dist => (
+                <select
+                  id="district"
+                  className="form-select input-light"
+                  required
+                  value={selectedDistrict}
+                  onChange={handleDistrictChange}
+                >
+                  <option value="">Select District</option>
+                  {districts.map((dist) => (
                     <option key={dist} value={dist}>{dist}</option>
                   ))}
                 </select>
@@ -146,7 +173,6 @@ const CrisisSignup = () => {
                     <option key={city} value={city}>{city}</option>
                   ))}
                 </select>
-
               </div>
             </div>
 
@@ -180,7 +206,7 @@ const CrisisSignup = () => {
               </span>
             </div>
 
-            <button type="submit" className="btn btn-login w-100">Sign Up</button>
+            <button type="submit" className="btn btn-primary w-100">Sign Up</button>
           </form>
         </div>
       </div>
