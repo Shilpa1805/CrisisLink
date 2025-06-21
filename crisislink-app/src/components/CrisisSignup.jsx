@@ -10,9 +10,17 @@ const CrisisSignup = () => {
 
   return (
     <div className="signup-bg">
+      {/* Left side logo */}
+      <div className="signup-left">
+        <h1 className="crisis-logo">
+          CrisisLink
+        </h1>
+      </div>
+
+      {/* Right side form */}
       <div className="signup-form-container">
         <div className="form-box">
-          <h2 className="mb-4 welcome-title">Welcome<br />Back</h2>
+          <h2 className="welcome-title d-flex justify-content-center align-items-center">Welcome</h2>
           <form>
             <div className="mb-3">
               <label htmlFor="email" className="form-label label-light">Email</label>
