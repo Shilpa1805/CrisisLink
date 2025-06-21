@@ -8,6 +8,8 @@ import eyeCrossed from "../assets/eye-crossed.png";
 const CrisisSignup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState({});
   const [states, setStates] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [cities, setCities] = useState([]);
@@ -16,6 +18,7 @@ const CrisisSignup = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [gender, setGender] = useState("");
 
   useEffect(() => {
     fetch("/data/states.json")
@@ -26,15 +29,18 @@ const CrisisSignup = () => {
   const handleStateChange = async (e) => {
     const state = e.target.value;
     setSelectedState(state);
+    setErrors((prev) => ({ ...prev, state: "" }));
     const res = await fetch("/data/districts.json");
     const data = await res.json();
     setDistricts(data[state] || []);
+    setSelectedDistrict("");
     setCities([]);
   };
 
   const handleDistrictChange = async (e) => {
     const district = e.target.value;
     setSelectedDistrict(district);
+    setErrors((prev) => ({ ...prev, district: "" }));
     setSelectedCity("");
     try {
       const res = await fetch("/data/cities.json");
@@ -48,7 +54,32 @@ const CrisisSignup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Submit logic here
+    const newErrors = {};
+
+    const fname = document.getElementById("fname").value.trim();
+    const lname = document.getElementById("lname").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const dob = document.getElementById("dob").value;
+    const termsChecked = document.getElementById("terms").checked;
+
+    if (!fname) newErrors.fname = "First name is required.";
+    if (!lname) newErrors.lname = "Last name is required.";
+    if (!email.includes("@")) newErrors.email = "Enter a valid email.";
+    if (!/^[0-9]{10}$/.test(phone)) newErrors.phone = "Enter a valid 10-digit number.";
+    if (!dob) newErrors.dob = "Date of birth is required.";
+    if (password.length < 6) newErrors.password = "Password must be at least 6 characters.";
+    if (password !== confirmPassword) newErrors.confirmPassword = "Passwords do not match.";
+    if (!gender) newErrors.gender = "Gender is required.";
+    if (!selectedState) newErrors.state = "Please select a state.";
+    if (!selectedDistrict) newErrors.district = "Please select a district.";
+    if (!selectedCity) newErrors.city = "Please select a city.";
+    if (!termsChecked) newErrors.terms = "You must agree to the Terms and Conditions.";
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Form submitted successfully!");
+    }
   };
 
   const maxDOB = new Date().toISOString().split("T")[0];
@@ -57,20 +88,20 @@ const CrisisSignup = () => {
     <div className="signup-bg">
       <div className="signup-left">
         <h1 className="crisis-logo">CrisisLink</h1>
-      </div>
-
-      <div className="signup-form-container">
+      </div><div className="signup-form-container">
         <div className="form-box">
-          <h2 className="welcome-title d-flex justify-content-center align-items-center">Welcome</h2>
+          <h2 className="welcome-title text-center">Welcome</h2>
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-md-6">
                 <label className="form-label label-light" htmlFor="fname">First Name</label>
-                <input type="text" id="fname" className="form-control input-light" placeholder="Enter your first name" required />
+                <input type="text" id="fname" className="form-control input-light" placeholder="Enter your first name" />
+                {errors.fname && <div className="text-danger mt-1">{errors.fname}</div>}
               </div>
               <div className="col-md-6">
                 <label className="form-label label-light" htmlFor="lname">Last Name</label>
-                <input type="text" id="lname" className="form-control input-light" placeholder="Enter your last name" required />
+                <input type="text" id="lname" className="form-control input-light" placeholder="Enter your last name" />
+                {errors.lname && <div className="text-danger mt-1">{errors.lname}</div>}
               </div>
             </div>
 
@@ -83,100 +114,128 @@ const CrisisSignup = () => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
+              {errors.email && <div className="text-danger mt-1">{errors.email}</div>}
             </div>
 
-              <div className="row space">
-                <label className="form-label label-light">Gender</label>
-                <div className="d-flex gap-4 align-items-center">
-                  <div className="form-check">
-                    <input type="radio" className="form-check-input" name="gender" id="genderMale" value="Male" required />
-                    <label className="form-check-label label-light" htmlFor="genderMale">Male</label>
-                  </div>
-                  <div className="form-check">
-                    <input type="radio" className="form-check-input" name="gender" id="genderFemale" value="Female" required />
-                    <label className="form-check-label label-light" htmlFor="genderFemale">Female</label>
-                  </div>
-                  <div className="form-check">
-                    <input type="radio" className="form-check-input" name="gender" id="genderOther" value="Other" required />
-                    <label className="form-check-label label-light" htmlFor="genderOther">Other</label>
-                  </div>
-                </div>
-              </div>
-  
-              <div className="row space">
-                <div className=" col-md-7">
-                  <label className="form-label label-light" htmlFor="phone">Phone</label>
+            <div className="row space">
+              <label className="form-label label-light">Gender</label>
+              <div className="d-flex gap-4 align-items-center">
+                <div className="form-check">
                   <input
-                    type="tel"
-                    id="phone"
-                    className="form-control input-light"
-                    placeholder="Enter 10-digit number"
-                    pattern="[0-9]{10}"
-                    required
+                    type="radio"
+                    className="form-check-input"
+                    name="gender"
+                    id="genderMale"
+                    value="Male"
+                    checked={gender === "Male"}
+                    onChange={(e) => setGender(e.target.value)}
                   />
+                  <label className="form-check-label label-light" htmlFor="genderMale">Male</label>
                 </div>
-                <div className="col-md-5">
-                  <label className="form-label label-light" htmlFor="dob">Date of Birth</label>
+                <div className="form-check">
                   <input
-                    type="date"
-                    id="dob"
-                    max={maxDOB}
-                    className="form-control input-light"
-                    required
+                    type="radio"
+                    className="form-check-input"
+                    name="gender"
+                    id="genderFemale"
+                    value="Female"
+                    checked={gender === "Female"}
+                    onChange={(e) => setGender(e.target.value)}
                   />
+                  <label className="form-check-label label-light" htmlFor="genderFemale">Female</label>
+                </div>
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    name="gender"
+                    id="genderOther"
+                    value="Other"
+                    checked={gender === "Other"}
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                  <label className="form-check-label label-light" htmlFor="genderOther">Other</label>
                 </div>
               </div>
-  
-              <div className="row space">
-                <div className=" col-md-4">
-                  <label className="form-label label-light" htmlFor="state">State</label>
-                  <select
-                    id="state"
-                    className="form-select input-light"
-                    required
-                    onChange={handleStateChange}
-                  >
-                    <option value="">Select State</option>
-                    {states.map((state) => (
-                      <option key={state} value={state}>{state}</option>
-                    ))}
-                  </select>
-                </div>
-  
-                <div className="col-md-4">
-                  <label className="form-label label-light" htmlFor="district">District</label>
-                  <select
-                    id="district"
-                    className="form-select input-light"
-                    required
-                    value={selectedDistrict}
-                    onChange={handleDistrictChange}
-                  >
-                    <option value="">Select District</option>
-                    {districts.map((dist) => (
-                      <option key={dist} value={dist}>{dist}</option>
-                    ))}
-                  </select>
-                </div>
-  
-                <div className="col-md-4">
-                  <label className="form-label label-light" htmlFor="city">City</label>
-                  <select
-                    id="city"
-                    className="form-select input-light"
-                    required
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.target.value)}
-                  >
-                    <option value="">Select City</option>
-                    {cities.map((city) => (
-                      <option key={city} value={city}>{city}</option>
-                    ))}
-                  </select>
-                </div>
+              {errors.gender && <div className="text-danger mt-1">{errors.gender}</div>}
+            </div>
+
+
+            <div className="row space">
+              <div className=" col-md-7">
+                <label className="form-label label-light" htmlFor="phone">Phone</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  className="form-control input-light"
+                  placeholder="Enter 10-digit number"
+                  pattern="[0-9]{10}"
+                />
+                {errors.phone && <div className="text-danger mt-1">{errors.phone}</div>}
               </div>
+              <div className="col-md-5">
+                <label className="form-label label-light" htmlFor="dob">Date of Birth</label>
+                <input
+                  type="date"
+                  id="dob"
+                  max={maxDOB}
+                  className="form-control input-light"
+                />
+                {errors.dob && <div className="text-danger mt-1">{errors.dob}</div>}
+              </div>
+            </div>
+
+            
+            <div className="row space">
+              <div className=" col-md-4">
+                <label className="form-label label-light" htmlFor="state">State</label>
+                <select
+                  id="state"
+                  className="form-select input-light"
+                  value={selectedState}
+                  onChange={handleStateChange}
+                >
+                  <option value="">Select State</option>
+                  {states.map((state) => (
+                    <option key={state} value={state}>{state}</option>
+                  ))}
+                </select>
+                {errors.state && <div className="text-danger mt-1">{errors.state}</div>}
+              </div>
+
+              <div className="col-md-4">
+                <label className="form-label label-light" htmlFor="district">District</label>
+                <select
+                  id="district"
+                  className="form-select input-light"
+                  value={selectedDistrict}
+                  onChange={handleDistrictChange}
+                >
+                  <option value="">Select District</option>
+                  {districts.map((dist) => (
+                    <option key={dist} value={dist}>{dist}</option>
+                  ))}
+                </select>
+                {errors.district && <div className="text-danger mt-1">{errors.district}</div>}
+              </div>
+
+              <div className="col-md-4">
+                <label className="form-label label-light" htmlFor="city">City</label>
+                <select
+                  id="city"
+                  className="form-select input-light"
+                  value={selectedCity}
+                  onChange={(e) => setSelectedCity(e.target.value)}
+                >
+                  <option value="">Select City</option>
+                  {cities.map((city) => (
+                    <option key={city} value={city}>{city}</option>
+                  ))}
+                </select>
+                {errors.city && <div className="text-danger mt-1">{errors.city}</div>}
+              </div>
+            </div>
 
             <div className="position-relative">
               <label className="form-label label-light" htmlFor="password">Password</label>
@@ -187,8 +246,9 @@ const CrisisSignup = () => {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
               />
+              {errors.password && <div className="text-danger mt-1">{errors.password}</div>}
+
               <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
                 <img className="eye" src={showPassword ? eyeCrossed : eye} alt="Toggle Password" />
               </span>
@@ -201,22 +261,25 @@ const CrisisSignup = () => {
                 id="confirmPassword"
                 className="form-control input-light"
                 placeholder="Confirm your password"
-                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
+              {errors.confirmPassword && <div className="text-danger mt-1">{errors.confirmPassword}</div>}
+
               <span className="toggle-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                 <img className="eye" src={showConfirmPassword ? eyeCrossed : eye} alt="Toggle Confirm Password" />
               </span>
             </div>
 
             <div className="form-check space">
-              <input type="checkbox" className="form-check-input" id="terms" required />
+              <input type="checkbox" className="form-check-input" id="terms" />
               <label className="form-check-label label-light" htmlFor="terms">
                 I agree to the <a href="#" className="text-link">Terms and Conditions</a>
               </label>
             </div>
 
             <button type="submit" className="btn btn-primary w-100">Sign Up</button>
-            
+
             <div className="text-center m-2">
               <span className="label-light">Already have an account? </span>
               <Link to="/login" className="text-link">Log in</Link>
@@ -229,3 +292,4 @@ const CrisisSignup = () => {
 };
 
 export default CrisisSignup;
+
