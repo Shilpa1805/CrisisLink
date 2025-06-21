@@ -62,8 +62,13 @@ const CrisisSignup = () => {
     const dob = document.getElementById("dob").value;
     const termsChecked = document.getElementById("terms").checked;
 
+    // Only alphabets validation for first and last name
     if (!fname) newErrors.fname = "First name is required.";
+    else if (!/^[A-Za-z]+$/.test(fname)) newErrors.fname = "First name must contain only alphabets.";
+
     if (!lname) newErrors.lname = "Last name is required.";
+    else if (!/^[A-Za-z]+$/.test(lname)) newErrors.lname = "Last name must contain only alphabets.";
+
     if (!email.includes("@")) newErrors.email = "Enter a valid email.";
     if (!/^[0-9]{10}$/.test(phone)) newErrors.phone = "Enter a valid 10-digit number.";
     if (!dob) newErrors.dob = "Date of birth is required.";
@@ -74,6 +79,12 @@ const CrisisSignup = () => {
     if (!selectedDistrict) newErrors.district = "Please select a district.";
     if (!selectedCity) newErrors.city = "Please select a city.";
     if (!termsChecked) newErrors.terms = "You must agree to the Terms and Conditions.";
+
+    // Password mismatch validation (in addition to above)
+    if (password && confirmPassword && password !== confirmPassword) {
+      newErrors.password = "Passwords do not match.";
+      newErrors.confirmPassword = "Passwords do not match.";
+    }
 
     setErrors(newErrors);
 
@@ -95,12 +106,14 @@ const CrisisSignup = () => {
             <div className="row">
               <div className="col-md-6">
                 <label className="form-label label-light" htmlFor="fname">First Name</label>
-                <input type="text" id="fname" className="form-control input-light" placeholder="Enter your first name" />
+                <input type="text" id="fname" className="form-control input-light" placeholder="Enter your first name" pattern="[A-Za-z]+" title="First name must contain only alphabets."
+                />
                 {errors.fname && <div className="text-danger mt-1">{errors.fname}</div>}
               </div>
               <div className="col-md-6">
                 <label className="form-label label-light" htmlFor="lname">Last Name</label>
-                <input type="text" id="lname" className="form-control input-light" placeholder="Enter your last name" />
+                <input type="text" id="lname" className="form-control input-light" placeholder="Enter your last name" pattern="[A-Za-z]+" title="Last name must contain only alphabets."
+                />
                 {errors.lname && <div className="text-danger mt-1">{errors.lname}</div>}
               </div>
             </div>
@@ -186,7 +199,7 @@ const CrisisSignup = () => {
               </div>
             </div>
 
-            
+
             <div className="row space">
               <div className=" col-md-4">
                 <label className="form-label label-light" htmlFor="state">State</label>
