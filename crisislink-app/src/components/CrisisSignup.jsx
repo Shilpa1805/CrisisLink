@@ -87,22 +87,25 @@ const CrisisSignup = () => {
             </div>
 
             <div className="row">
-              <div className="mb-3 col-md-4">
+              <div className="col-md-7">
                 <label className="form-label label-light">Gender</label>
-                <div>
-                  <label className="me-3">
-                    <input type="radio" name="gender" value="Male" required /> Male
-                  </label>
-                  <label className="me-3">
-                    <input type="radio" name="gender" value="Female" required /> Female
-                  </label>
-                  <label>
-                    <input type="radio" name="gender" value="Other" required /> Other
-                  </label>
+                <div className="d-flex gap-4 align-items-center">
+                  <div className="form-check">
+                    <input type="radio" className="form-check-input" name="gender" id="genderMale" value="Male" required />
+                    <label className="form-check-label" htmlFor="genderMale">Male</label>
+                  </div>
+                  <div className="form-check">
+                    <input type="radio" className="form-check-input" name="gender" id="genderFemale" value="Female" required />
+                    <label className="form-check-label" htmlFor="genderFemale">Female</label>
+                  </div>
+                  <div className="form-check">
+                    <input type="radio" className="form-check-input" name="gender" id="genderOther" value="Other" required />
+                    <label className="form-check-label" htmlFor="genderOther">Other</label>
+                  </div>
                 </div>
               </div>
 
-              <div className="mb-3 col-md-4">
+              <div className="col-md-5">
                 <label className="form-label label-light" htmlFor="dob">Date of Birth</label>
                 <input
                   type="date"
@@ -113,19 +116,21 @@ const CrisisSignup = () => {
                   required
                 />
               </div>
-
-              <div className="mb-3 col-md-4">
-                <label className="form-label label-light" htmlFor="phone">Phone</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  className="form-control input-light"
-                  placeholder="Enter 10-digit number"
-                  pattern="[0-9]{10}"
-                  required
-                />
-              </div>
             </div>
+
+            <div className="mb-3">
+              <label className="form-label label-light" htmlFor="phone">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                className="form-control input-light"
+                placeholder="Enter 10-digit number"
+                pattern="[0-9]{10}"
+                required
+              />
+            </div>
+
+
 
             <div className="row">
               <div className="mb-3 col-md-4">
@@ -205,6 +210,19 @@ const CrisisSignup = () => {
                 {showPassword ? "🙈" : "👁️"}
               </span>
             </div>
+
+            <div className="mb-3 form-check">
+              <input type="checkbox" className="form-check-input" id="terms" required />
+              <label className="form-check-label label-light" htmlFor="terms">
+                I agree to the <a href="#" className="text-link">Terms and Conditions</a>
+              </label>
+            </div>
+
+            <div className="mb-3 text-center">
+              <span className="label-light">Already have an account? </span>
+              <Link to="/login" className="text-link">Log in</Link>
+            </div>
+
 
             <button type="submit" className="btn btn-primary w-100">Sign Up</button>
           </form>
