@@ -1,0 +1,39 @@
+.bg-image {
+  background-image: url('../assets/bg2.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.logo-text {
+  font-size: 3rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.bg-form {
+  background-color: #0B2E4E; /* Deep blue shade */
+}
+
+.form-control {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-label {
+  color: white;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 38px;
+  right: 10px;
+  cursor: pointer;
+  color: white;
+}

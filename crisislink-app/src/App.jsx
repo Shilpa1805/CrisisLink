@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CrisisSignin from './components/CrisisSignin';
+import CrisisSignup from './components/CrisisSignup';
 import CrisisLogin from './components/CrisisLogin';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
      <Router>
       <Routes>
         <Route path="/" element={<CrisisLogin />} />
-        <Route path="/signin" element={<CrisisSignin />} /> 
+        <Route path="/signup" element={<CrisisSignup />} /> 
       </Routes>
     </Router>
   );
