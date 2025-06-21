@@ -98,10 +98,13 @@ const CrisisSignup = () => {
   return (
     <div className="signup-bg">
       <div className="signup-left">
-        <h1 className="crisis-logo">CrisisLink</h1>
+        <div className="brand">
+          <h1 className="crisis-logo">CrisisLink</h1>
+          <p>Bridging help and humanity</p>
+        </div>
       </div><div className="signup-form-container">
         <div className="form-box">
-          <h2 className="welcome-title text-center">Welcome</h2>
+          <h1 className="welcome-title text-center">Welcome</h1>
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-md-6">
