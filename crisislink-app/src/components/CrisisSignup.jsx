@@ -298,7 +298,7 @@ const CrisisSignup = () => {
 
             <div className="text-center m-2">
               <span className="label-light">Already have an account? </span>
-              <Link to="/login" className="text-link">Log in</Link>
+              <Link to="/" className="text-link">Log in</Link>
             </div>
           </form>
         </div>
