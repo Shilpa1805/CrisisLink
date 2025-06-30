@@ -1,0 +1,12 @@
+# Ignore all virtual environments
+**/venv/
+*.env
+__pycache__/
+*.pyc
+
+# Ignore editor/OS files
+.vscode/
+.DS_Store
+
+# Node modules (if using React frontend)
+node_modules/
