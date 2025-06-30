@@ -1,179 +1,146 @@
-/* Layout */
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;1,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text&display=swap');
+/* Reuse the same layout and look as signup, but you can override or add login-specific styles here */
 
-.login-container {
-  display: flex;
+.login-bg {
   height: 100vh;
   width: 100vw;
+  display: flex;
+  background: url('../assets/bg2.png') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
   overflow: hidden;
-  font-family: Arial, sans-serif;
 }
 
-/* Left Panel with Image & Wave */
-.left-panel {
-  width: 60%;
-  position: relative;
-  overflow: visible;
-}
-
-.background-img {
-  position: absolute;
-  width: 178%;
-  height: 100%;
-  object-fit: cover;
-  top: 0;
-  left: -10%; /* Moves image 10% to the left */
-  z-index: 1;
-}
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 3%;
-  
-  width: 100%;
-  height: 85%;
-  z-index: 1;
- 
+.login-left {
+  flex: 1;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
 }
 
-
-.logo-circle {
-  width: 120px;
-  height: 120px;
-  background: linear-gradient(181.47deg, #002C4F 25.8%, #002C4F 30.11%, rgba(0, 45, 79, 0.973994) 30.13%, rgba(0, 47, 81, 0.894634) 33.87%, rgba(0, 51, 83, 0.799515) 38.35%, rgba(0, 51, 83, 0.777705) 38.37%, rgba(0, 77, 97, 0) 71.2%);
-  border-radius: 50%;
-  margin-bottom: -110px;
-  
-
-}
-
-
-.logo-text {
- font-family: 'Red Hat Display';
-font-style: italic;
-font-weight: 300;
-font-size: 96px;
-line-height: 48px;
-/* or 51% */
-text-align: center;
-letter-spacing: -0.04em;
-
-color: white;
-
-text-shadow: 0px 4px 4px rgba(0, 77, 97, 0.25);
-}
-
-
-
-
-.form-container {
-  position: absolute;
-  top: 0;
-  right: -30rem;           /* Pushes it away from the right edge */
-  width: 400px;          /* Fixed width */
-  height: 80%;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;  /* Or center depending on your design */
-  padding: 2rem;
-  /*background: rgba(0, 44, 79, 0.5); /* Optional: semi-transparent bg for readability */
-}
-
-/* Form Styles */
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-h2 {
-font-family: 'Libre Caslon Text';
-font-style: normal;
-font-weight: 500;
-font-size: 52px;
-line-height: 52px;
-/* or 100% */
-letter-spacing: -0.06em;
-}
-
-label {
-  margin-bottom: 6px;
-  font-size: 0.9rem;
-}
-
-input[type="email"],
-input[type="password"],
-input[type="text"] {
-  box-sizing: border-box;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  background-color: #002C4F;
-  border-radius: 5px;
-  width: 100%;
-}
-.password-wrapper {
-  position: relative;
-}
-
-.password-wrapper input {
-  padding-right: 30px; /* space for eye icon */
-}
-
-.toggle-visibility {
-  position: absolute;
-  top: 9px;
-  right: 10px;
-  cursor: pointer;
-}
-
-/* Options Row */
-.options {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem; /* Increase this value as needed */
-  margin-bottom: 20px;
-  font-size: 0.9rem;
-}
-
-
-/* Buttons */
-.signin-button {
-  background-color: #1e133c;
+.crisis-logo {
+  font-size: 5rem;
+  font-weight: 600;
   color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 15px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+  font-style: italic;
 }
 
-.or-divider {
+.brand p {
+  color: white;
+  font-style: italic;
   text-align: center;
-  margin-bottom: 15px;
-  font-size: 0.9rem;
+  font-size: medium;
 }
 
-.google-button {
+.login-form-container {
+  flex: 1;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid white;
-  background: transparent;
-  padding: 10px;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+  padding-right: 6vw;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.google-button img {
-  width: 20px;
-  height: 20px;
+.login-form-container::-webkit-scrollbar {
+  display: none;
+}
+
+.form-box {
+  background: rgba(10, 32, 60, 0.85);
+  border-radius: 2rem;
+  padding: 2rem 3rem;
+  width: 30rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.form-box::-webkit-scrollbar {
+  display: none;
+}
+
+.welcome-title {
+  color: #556a9a;
+  font-size: 2.8rem;
+  font-weight: 600;
+}
+
+.label-light {
+  color: #bfcbe6 !important;
+}
+
+.input-light {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid #bfcbe6 !important;
+}
+
+.input-light:focus {
+  background: transparent !important;
+  color: #fff !important;
+  border-color: #fff !important;
+  box-shadow: none;
+}
+
+.input-light::placeholder,
+.form-control::placeholder {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  top: 38px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #bfcbe6;
+}
+
+.text-link {
+  color: #6c8ae4 !important;
+  text-decoration: underline;
+}
+
+.eye{
+  position: relative;
+  top: 0.7rem;
+}
+
+@media (max-width: 450px) {
+  .login-bg {
+    flex-direction: column;
+  }
+
+  .login-left {
+    flex: none !important;
+    padding: 2rem;
+  }
+
+  .login-form-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2vw;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .form-box {
+    background: rgba(10, 32, 60, 0.85);
+    border-radius: 2rem;
+    padding: 2rem 3rem;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    max-height: 78vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
 }

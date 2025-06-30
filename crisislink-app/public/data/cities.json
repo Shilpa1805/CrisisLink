@@ -1,0 +1,18 @@
+{
+  "Kerala": {
+    "Thiruvananthapuram": ["Thiruvananthapuram", "Neyyattinkara", "Nedumangad", "Varkala"],
+    "Kollam": ["Kollam", "Karunagappally", "Paravur", "Punalur"],
+    "Alappuzha": ["Alappuzha", "Cherthala", "Chengannur", "Kayamkulam"],
+    "Kottayam": ["Kottayam", "Changanassery", "Palai", "Vaikom"],
+    "Pathanamthitta": ["Pathanamthitta", "Adoor", "Thiruvalla", "Pandalam"],
+    "Idukki": ["Idukki", "Thodupuzha", "Nedumkandam", "Munnar"],
+    "Ernakulam": ["Kochi", "Aluva", "Perumbavoor", "Muvattupuzha"],
+    "Thrissur": ["Thrissur", "Irinjalakuda", "Kunnamkulam", "Chalakudy"],
+    "Palakkad": ["Palakkad", "Ottappalam", "Pattambi", "Shornur"],
+    "Malappuram": ["Malappuram", "Perinthalmanna", "Manjeri", "Tirur"],
+    "Kozhikode": ["Kozhikode", "Vadakara", "Thamarassery", "Koyilandy"],
+    "Wayanad": ["Kalpetta", "Sulthan Bathery", "Mananthavady", "Meenangadi"],
+    "Kannur": ["Kannur", "Thalassery", "Taliparamba", "Payyannur"],
+    "Kasaragod": ["Kasaragod", "Kanhangad", "Kunjimangalam", "Hosdurg"]
+  }
+}
